@@ -5,11 +5,11 @@ module.exports = {
     // 配置不同的后台API地址
     proxy: {
       '/api': {
-        target: 'http://www.dzm.com',
+        target: 'http://localhost:8010/',
         ws: false,
         changeOrigin: true,
         pathRewrite: {
-          '^/api': ''
+          '^/api': 'api'
         }
       }
     }

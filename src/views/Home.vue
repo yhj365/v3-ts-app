@@ -14,5 +14,19 @@ export default defineComponent({
   components: {
     HelloWorld,
   },
+  mounted(){
+    const obj = {
+      name: 'Hello World',
+    }
+    const proxyObj = new Proxy(obj, { 
+      get(target:any,key:any):any { 
+        return target[key];
+      },
+      set(target,key,newValue) {
+        target[key] = newValue
+        return true
+      }
+    })
+  }
 });
 </script>

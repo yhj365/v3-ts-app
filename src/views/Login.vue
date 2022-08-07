@@ -9,8 +9,8 @@
       label-width="70px"
       class="login-Form"
     >
-      <el-form-item label="账号" prop="account">
-        <el-input v-model="loginForm.account" />
+      <el-form-item label="账号" prop="username">
+        <el-input v-model="loginForm.username" />
       </el-form-item>
       <el-form-item label="密码" prop="password">
         <el-input v-model="loginForm.password" type="password" autocomplete="off" />
@@ -28,21 +28,28 @@
 import { defineComponent,reactive, toRefs } from 'vue'
 import type { FormInstance } from 'element-plus'
 import {initData} from '@/types/login'
-
+import {login} from '@/http/api'
+import {useRouter} from 'vue-router'
 
 export default defineComponent({
   setup() {
 
     const data = reactive(new initData())
     const rules = {
-      account: [{ required: true, trigger: 'blur',message: '账号不能为空' }],
+      username: [{ required: true, trigger: 'blur',message: '账号不能为空' }],
       password: [{ required: true, trigger: 'blur',message: '密码不能为空' }],
     }
+    const router = useRouter()
     const submitForm = (formEl: FormInstance | undefined) => {
       if (!formEl) return
-      formEl.validate((valid) => {
+      formEl.validate(async (valid) => {
         if (valid) {
-          console.log('submit!')
+          login(data.loginForm).then(res=>{
+console.log(res)
+            localStorage.setItem('token',res.data.token)
+            router.push('/')
+            console.log('submit!')
+          })
         } else {
           console.log('error submit!')
           return false
