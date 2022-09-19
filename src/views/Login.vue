@@ -45,7 +45,6 @@ export default defineComponent({
       formEl.validate(async (valid) => {
         if (valid) {
           login(data.loginForm).then(res=>{
-console.log(res)
             localStorage.setItem('token',res.data.token)
             router.push('/')
             console.log('submit!')

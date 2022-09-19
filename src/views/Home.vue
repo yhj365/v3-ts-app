@@ -1,32 +1,29 @@
 <template>
-  <div class="home">
-    <img alt="Vue logo" src="../assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js + TypeScript App"/>
-  </div>
+  <el-container>
+    <el-aside width="200px">Aside</el-aside>
+    <el-container>
+      <el-header style="height:80px;">
+        <div>
+          <img src="@/assets/logo.png"/>
+          <h2>后台管理系统</h2>
+        </div>
+      </el-header>
+      <el-main>Main</el-main>
+      <el-footer>Footer</el-footer>
+    </el-container>
+  </el-container>
 </template>
 
 <script lang="ts">
 import { defineComponent } from 'vue';
-import HelloWorld from '@/components/HelloWorld.vue'; // @ is an alias to /src
 
 export default defineComponent({
   name: 'Home',
   components: {
-    HelloWorld,
   },
   mounted(){
-    const obj = {
-      name: 'Hello World',
-    }
-    const proxyObj = new Proxy(obj, { 
-      get(target:any,key:any):any { 
-        return target[key];
-      },
-      set(target,key,newValue) {
-        target[key] = newValue
-        return true
-      }
-    })
+    console.log('Home');
+    
   }
 });
 </script>
