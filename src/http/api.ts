@@ -11,3 +11,10 @@ export const login = (data: loginIntf)=>{
     data
   })
 }
+export const getList = (data: any)=>{
+  return $http({
+    url: '/api/getList',
+    method: 'POST',
+    data
+  })
+}
