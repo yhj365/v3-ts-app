@@ -22,7 +22,7 @@
 
 <script lang="ts">
 import { defineComponent, onMounted, reactive, toRefs } from "vue"
-import {initData} from '@/types/order'
+import {initData, OrderListInt} from '@/types/order'
 import {getList} from '@/http/api'
 
 export default defineComponent({
@@ -36,7 +36,16 @@ export default defineComponent({
       // getList({page:order.selectData.page}).then(res=>{
       //   console.log(res);
       // })
+      order.selectData.count = 1
       order.orderList = [
+        {
+          userId: 1,
+          id: 1,
+          title: '标题',
+          body: '详情',
+        }
+      ]
+      order.dataList = [
         {
           userId: 1,
           id: 1,
@@ -51,7 +60,19 @@ export default defineComponent({
     }
     const onSearch = ()=>{
       console.log(order.selectData);
-      
+      let arr:OrderListInt[]=[]
+      if(order.selectData.title || order.selectData.body){
+        if(order.selectData.title){
+          arr = order.dataList.filter(item=>item.title.includes(order.selectData.title))
+        }
+        if(order.selectData.body){
+          arr = (order.selectData.title?arr:order.dataList).filter(item=>item.body.includes(order.selectData.body))
+        }
+      }else{
+        arr = order.dataList
+      }
+      order.selectData.count = arr.length
+      order.orderList = arr
     }
     return {
       ...toRefs(order),

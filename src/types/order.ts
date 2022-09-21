@@ -20,4 +20,5 @@ export class initData {
     count: 0
   }
   orderList:OrderListInt[] = []
+  dataList:OrderListInt[] = []
 }

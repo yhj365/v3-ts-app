@@ -18,3 +18,17 @@ export const getList = (data: any)=>{
     data
   })
 }
+export const getRoleList = (data: any)=>{
+  return $http({
+    url: '/api/getRoleList',
+    method: 'get',
+    data
+  })
+}
+export const getUserList = (data: any)=>{
+  return $http({
+    url: '/api/getList',
+    method: 'get',
+    data
+  })
+}
