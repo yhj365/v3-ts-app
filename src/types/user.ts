@@ -11,16 +11,28 @@ export interface role {
 
 }
 
+export interface selectDataInt {
+  userName: string,
+  roleName: string,
+
+}
+
 export class initData {
-  role:role = {
-    role: 0,
+  selectData:selectDataInt = {
+    userName: '',
     roleName: ''
   }
-  List:ListInt = {
+  originList:ListInt[] =[{
     nickName: '',
     userName: '',
     id: 0,
     roles: [],
-  }
+  }]
+  list:ListInt[] =[{
+    nickName: '',
+    userName: '',
+    id: 0,
+    roles: [],
+  }]
 
 }
