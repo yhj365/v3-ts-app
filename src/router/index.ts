@@ -4,7 +4,7 @@ import Home from '../views/Home.vue'
 const routes: Array<RouteRecordRaw> = [
   {
     path: '/',
-    name: 'Home',
+    name: 'home',
     component: Home,
     redirect: 'OrderView',
     children:[]
@@ -72,10 +72,16 @@ const router = createRouter({
 
 router.beforeEach((to)=>{
   const token:string | null = localStorage.getItem('token')
-  if(!token && to.path != '/login'){
+  console.log(token);
+  
+  if(!token && to.path !== '/login'){
     return '/login'
-  }else if(token && to.path != '/login'){
-    if(router.getRoutes().length == 3){
+  }else if(token && to.path !== '/login'){
+    console.log('token');
+    
+    if(router.getRoutes().length === 3){
+      console.log('3');
+      
       // 动态添加路由
       const routerData:any = [
         {
@@ -127,7 +133,7 @@ router.beforeEach((to)=>{
       })
     }
     router.replace(to.path)
-  }else if(token && to.path == '/login'){
+  }else if(token && to.path === '/login'){
     return '/'
   }
 })
